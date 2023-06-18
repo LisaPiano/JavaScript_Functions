@@ -137,10 +137,10 @@ whichQuadrant(0, 0);
 function typeOfTriangle(side1, side2, side3){
     let triangleStyle;
     if((side1 + side2 > side3) && (side2 + side3 > side1) && (side1 + side3 > side2)) {
-        if((side1 == side2)&& (side2 == side3)){
+        if((side1 == side2) && (side2 == side3)){
             triangleStyle = "equilateral";
         }
-        else if((side1 != side2)&& (side2 != side3)&&(side3 != side1)) {
+        else if((side1 != side2) && (side2 != side3) && (side3 != side1)) {
             triangleStyle = "scalene";
         }
         else {
@@ -173,3 +173,48 @@ typeOfTriangle(1, 1, 1);
 // continuing this high usage, you'll exceed your data plan by
 // 11.9 GB.
 // To stay below your data plan, use no more than 2.93 GB/day.
+
+function cellPhoneUse(planLimit, day, usage){
+    let currentAverage = usage/day;
+    let projectedAverage = planLimit/30;
+    let remainingData = planLimit - (day * currentAverage);
+    let remainingDays = 30-day;
+    let statusMessage; 
+    let aboveOrBelow;
+    //let projectedUsage = remainingDays * currentAverage; 
+
+
+
+    console.log(`${day} day(s) used, ${remainingDays} day(s) remaining`);
+    console.log(`Average daily use: ${(projectedAverage).toFixed(2)}. GB/day`);
+
+    if (currentAverage > projectedAverage){
+        statusMessage = "EXCEEDING"; 
+    } else if (currentAverage < projectedAverage) {
+        statusMessage = "UNDER";
+    } else {
+        statusMessage = "AT";
+    }
+
+    if (((((currentAverage * 30)) - planLimit).toFixed(2)) > 0){
+        aboveOrBelow = "EXCEED";
+    } else {
+        aboveOrBelow = "FALL BELOW"
+    }
+
+
+    console.log(`You are ${statusMessage} your average daily use ${(currentAverage).toFixed(2)} GB/day`);
+    console.log(`continuing this usage, you'll ${aboveOrBelow} your data plan by ${((currentAverage * 30)-planLimit).toFixed(2)} GB.`);
+    //needed to include this in case we wind up dividing by 0
+    if(remainingDays == 0){
+        console.log(`You are out of days for this cycle. You have used ${usage}GB of data.`);
+    }
+    else {
+    console.log(`To stay below your data plan, use no more than ${(remainingData/remainingDays).toFixed(2)} GB/day.`);
+    }
+   
+}
+
+cellPhoneUse(100, 15, 56);
+cellPhoneUse(50, 10, 25);
+cellPhoneUse(100, 30, 100);
