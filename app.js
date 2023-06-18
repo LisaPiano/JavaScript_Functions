@@ -134,6 +134,25 @@ whichQuadrant(0, 0);
 // Sides 1, 2, 2 make an isosceles triangle
 // Sides 1, 1, 2 make an invalid triangle
 
+function typeOfTriangle(side1, side2, side3){
+    let triangleStyle;
+    if((side1 + side2 > side3) && (side2 + side3 > side1) && (side1 + side3 > side2)) {
+        if((side1 == side2)&& (side2 == side3)){
+            triangleStyle = "equilateral";
+        }
+        else if((side1 != side2)&& (side2 != side3)&&(side3 != side1)) {
+            triangleStyle = "scalene";
+        }
+        else {
+            triangleStyle = "isosceles";
+        }
+    } else
+    triangleStyle = "Sorry. Not a triangle."
+    console.log(triangleStyle);
+    return triangleStyle;
+}
+typeOfTriangle(1, 1, 1);
+
 // EXERCISE NUMBER 5
 
 // BONUS Exercise 5: Data Plan Status
